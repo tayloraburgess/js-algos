@@ -39,13 +39,32 @@ function selectionSort(input) {
     return returnArray;
 }
 
+function insertionSort(input) {
+    console.log(`Insertion Sort Size: ${input.length}`);
+    const returnArray = input.slice(0, input.length);
+    let runTime = 0;
+    for (let i = 1; i < returnArray.length; i++) {
+        let j = i;
+        while (j > 0 && returnArray[j] < returnArray[j - 1]) {
+            const temp = returnArray[j - 1];
+            returnArray[j - 1] = returnArray[j];
+            returnArray[j] = temp;
+            runTime++;
+            j--;
+        }
+    } 
+    console.log(`Insertion Sort Runtime: ${runTime}`);
+    return returnArray;
+}
+
 console.log('\n');
 const testArray = [5, 4, 3, 2, 1];
 const bubble = bubbleSort(testArray);
 const selection = selectionSort(testArray);
+const insertion = insertionSort(testArray);
 console.log('\n')
 console.log(testArray);
 console.log('\n');
 console.log(bubble);
 console.log(selection);
-console.log('\n');
+console.log(insertion);
