@@ -57,14 +57,45 @@ function insertionSort(input) {
     return returnArray;
 }
 
+function mergeSort(input) {
+    function mergeArray(left, right) {
+        const returnArray = [];
+        while (left.length > 0 && right.length > 0) {
+            if (left[0] < right[0]) {
+                returnArray.push(left.shift());
+            } else {
+                returnArray.push(right.shift());
+            }
+        }
+        while (left.length > 0) {
+            returnArray.push(left.shift());
+        }
+        while (right.length > 0) {
+            returnArray.push(right.shift());
+        }
+        return returnArray;
+    }
+
+    if (input.length <= 1) {
+        return input;
+    }
+    const left = input.slice(0, input.length / 2); 
+    const right = input.slice(input.length / 2, input.length);
+    const leftMerged = mergeSort(left);
+    const rightMerged = mergeSort(right);
+    return mergeArray(leftMerged, rightMerged);
+}
+
 console.log('\n');
 const testArray = [5, 4, 3, 2, 1];
 const bubble = bubbleSort(testArray);
 const selection = selectionSort(testArray);
 const insertion = insertionSort(testArray);
+const merge = mergeSort(testArray);
 console.log('\n')
 console.log(testArray);
 console.log('\n');
 console.log(bubble);
 console.log(selection);
 console.log(insertion);
+console.log(merge)
