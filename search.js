@@ -86,16 +86,38 @@ function mergeSort(input) {
     return mergeArray(leftMerged, rightMerged);
 }
 
+function quickSort(input) {
+    const newArray = input.slice(0, input.length);
+    const left = [];
+    const right = [];
+    const pivotIndex = Math.floor(Math.random() * (newArray.length - 1));
+    const pivot = newArray[pivotIndex]; 
+    newArray.splice(pivotIndex, 1);
+    while (newArray.length > 0) {
+        if (newArray[0] < pivot) {
+            left.push(newArray.shift()); 
+        } else if (newArray[0] >= pivot) {
+            right.push(newArray.shift()); 
+        }
+    }
+    const sortedLeft = left.length > 1 ? quickSort(left) : left;
+    const sortedRight = right.length > 1 ? quickSort(right) : right;
+    sortedRight.unshift(pivot);
+    return sortedLeft.concat(sortedRight);
+}
+
 console.log('\n');
-const testArray = [5, 4, 3, 2, 1];
+const testArray = [6, 10, 2, 24, 78, 80, 12];
 const bubble = bubbleSort(testArray);
 const selection = selectionSort(testArray);
 const insertion = insertionSort(testArray);
 const merge = mergeSort(testArray);
+const quick = quickSort(testArray);
 console.log('\n')
 console.log(testArray);
 console.log('\n');
 console.log(bubble);
 console.log(selection);
 console.log(insertion);
-console.log(merge)
+console.log(merge);
+console.log(quick);
