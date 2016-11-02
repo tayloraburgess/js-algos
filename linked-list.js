@@ -1,4 +1,4 @@
-const singlyLinkedList = {
+export const singlyLinkedList = {
     _node: {
         _data: undefined,
         _next: undefined,
@@ -72,19 +72,21 @@ const singlyLinkedList = {
     }
 };
 
-const testList = Object.assign({}, singlyLinkedList);
-testList.appendNode({ data: 1});
-testList.appendNode({ data: 2});
-testList.appendNode({ data: 3});
-testList.appendNode({ data: 4});
-testList.iterateList((node) => {
-    console.log(node.getData());
-});
-console.log('---');
-const nodeData = testList.findNode({ data: 2});
-console.log(nodeData);
-console.log('---');
-testList.deleteNode({ data: 1});
-testList.iterateList((node) => {
-    console.log(node.getData());
-});
+if (require.main === module) {
+    const testList = Object.assign({}, singlyLinkedList);
+    testList.appendNode({ data: 1});
+    testList.appendNode({ data: 2});
+    testList.appendNode({ data: 3});
+    testList.appendNode({ data: 4});
+    testList.iterateList((node) => {
+        console.log(node.getData());
+    });
+    console.log('---');
+    const nodeData = testList.findNode({ data: 2});
+    console.log(nodeData);
+    console.log('---');
+    testList.deleteNode({ data: 1});
+    testList.iterateList((node) => {
+        console.log(node.getData());
+    });
+}

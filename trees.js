@@ -31,9 +31,25 @@ function dfs(node) {
     });
 }
 
-const cNode = NodeFactory('c');
-const bNode = NodeFactory('b');
-const aNode = NodeFactory('a', [cNode, bNode]);
+function bfs(node) {
+    const queue = [];
+    queue.push(node);
+    while (queue.length > 0) {
+        const currentNode = queue.shift();
+        console.log(currentNode.getName());
+        currentNode.getChildren().forEach((child) => {
+           queue.push(child); 
+        });
+    }
+}
+const eNode = NodeFactory('e');
+const dNode = NodeFactory('d');
+const cNode = NodeFactory('c', [dNode]);
+const bNode = NodeFactory('b', [eNode]);
+const aNode = NodeFactory('a', [bNode, cNode]);
 console.log('DFS:');
 dfs(aNode);
 console.log('BFS:');
+bfs(aNode);
+
+export singlyLinkedList;
